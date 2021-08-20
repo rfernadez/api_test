@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 23, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 66.018 s <<< FAILURE! - in TestSuite
+Update_Invalid_Post(PostTests)  Time elapsed: 0.651 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <406> but was <200>.
+
+	at PostTests.Update_Invalid_Post(PostTests.java:150)
+
+Update_Invalid_Comment(CommentsTests)  Time elapsed: 0.735 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <406> but was <200>.
+
+	at CommentsTests.Update_Invalid_Comment(CommentsTests.java:173)
+

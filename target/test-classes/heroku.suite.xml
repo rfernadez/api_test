@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Heroku execution" thread-count="1" parallel="tests">
+
+    <test name="Post Tests">
+        <classes>
+            <class name="PostTests"></class>
+        </classes>
+    </test>
+    <test name="Comments Tests">
+        <classes>
+            <class name="CommentsTests"></class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,10 @@
+Specifications\ResponseSpecifications.class
+helpers\DataHelper.class
+model\Article.class
+helpers\RequestHelpers.class
+model\InvalidPost.class
+Specifications\RequestSpecifications.class
+model\Comment.class
+model\InvalidComment.class
+model\User.class
+model\Post.class
