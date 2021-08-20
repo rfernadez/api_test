@@ -6,7 +6,6 @@ import model.Comment;
 import model.InvalidComment;
 import model.Post;
 import org.hamcrest.Matchers;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
@@ -159,20 +158,6 @@ public class CommentsTests extends Base {
                 .body("Message", Matchers.equalTo("Comment not found"));
     }
 
-    @Test
-    public void Update_Invalid_Comment(){
-        Comment testComment = new Comment("Juan", "hola");
-
-        given()
-                .spec(RequestSpecifications.useBasicAuthentication())
-                .body(testComment)
-                .put(resourcePathCmt + createdPost.toString() + "/"+ createdCmt.toString())
-                .then()
-                .log().all()
-                .statusCode(406)
-                .spec(ResponseSpecifications.defaultSpec())
-                .body("message",Matchers.equalTo("Comment could not be updated"));
-    }
 
     @Test
     public void Update_Comment(){
@@ -189,6 +174,21 @@ public class CommentsTests extends Base {
                 .spec(ResponseSpecifications.defaultSpec())
                 .body("message",Matchers.equalTo("Comment updated"));
     }
+    @Test
+    public void Update_Invalid_Comment(){
+        createPost();
+        createComment();
+        Comment testComment = new Comment("Juan", "hola");
 
+        given()
+                .spec(RequestSpecifications.useBasicAuthentication())
+                .body(testComment)
+                .put(resourcePathCmt + "10000" + "/"+ createdCmt.toString())
+                .then()
+                .log().all()
+                .statusCode(406)
+                .spec(ResponseSpecifications.defaultSpec())
+                .body("message",Matchers.equalTo("Comment could not be updated"));
+    }
 
 }

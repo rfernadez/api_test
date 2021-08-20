@@ -5,7 +5,6 @@ import io.restassured.response.Response;
 import model.InvalidPost;
 import model.Post;
 import org.hamcrest.Matchers;
-import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -138,20 +137,6 @@ public class PostTests extends Base {
                 .spec(ResponseSpecifications.defaultSpec())
                 .body("Message", Matchers.equalTo("Post not found"));
     }
-    @Test
-    public void Update_Invalid_Post(){
-        Post testPost = new Post("nuevo titulo","nuevo contenido" );
-        given()
-                .spec(RequestSpecifications.generateToken())
-                .body(testPost)
-                .put(resourcePath +"/" + createdPost.toString())
-                .then()
-                .log().all()
-                .statusCode(406)
-                .spec(ResponseSpecifications.defaultSpec())
-                .body("message",Matchers.equalTo("Post could not be updated"));
-    }
-
 
     @Test
     public void Update_Post(){
@@ -167,6 +152,19 @@ public class PostTests extends Base {
                 .spec(ResponseSpecifications.defaultSpec())
                 .body("message",Matchers.equalTo("Post updated"));
     }
-
+    @Test
+    public void Update_Invalid_Post(){
+        createPost();
+        Post testPost = new Post("nuevo titulo","nuevo contenido" );
+        given()
+                .spec(RequestSpecifications.generateToken())
+                .body(testPost)
+                .put(resourcePath +"/" + "10000")
+                .then()
+                .log().all()
+                .statusCode(406)
+                .spec(ResponseSpecifications.defaultSpec())
+                .body("message",Matchers.equalTo("Post could not be updated"));
+    }
 
 }

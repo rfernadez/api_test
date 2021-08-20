@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Heroku execution" thread-count="1" parallel="tests">
+<suite name="Heroku execution" thread-count="2" parallel="tests">
 
     <test name="Post Tests">
         <classes>
